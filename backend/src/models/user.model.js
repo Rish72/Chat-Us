@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+    
 const userSchema = new mongoose.Schema({
     email : {
         type: String,
@@ -17,7 +17,8 @@ const userSchema = new mongoose.Schema({
     },
     profilePic : {
         type : String,
-        required : false
+        required : false,
+        default : "default-image.jpg"
     }
 },
 {timestamps : true}
