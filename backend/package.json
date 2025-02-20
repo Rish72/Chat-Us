@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
-  "type" : "module",
+  "type": "module",
   "scripts": {
     "dev": "nodemon src/index.js"
   },
@@ -20,6 +20,7 @@
     "socket.io": "^4.8.1"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.8",
     "nodemon": "^3.1.9"
   }
 }
