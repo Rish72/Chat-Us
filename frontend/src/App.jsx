@@ -4,18 +4,40 @@ import SignUpPage from "./pages/SignUpPage"
 import LogInPage from "./pages/LogInPage"
 import SettingPage from "./pages/SettingPage"
 import ProfilePage from "./pages/ProfilePage"
-import { Routes, Route } from "react-router-dom"
+import NotFoundPage from "./pages/NotFoundPage"
+import { Routes, Route, Navigate } from "react-router-dom"
+import { useAuthStore } from "./store/useAuthStore"
+import {LoaderPinwheel} from "lucide-react";
+import { useEffect } from "react"
+// import {axiosInstanct} from "../src/lib/axios.js"
 
 const App = () => {
-  return (
-    <>
+
+  const {authUser , checkAuth, isCheckingAuth} = useAuthStore();
+  
+  console.log("auth user in app comp ",authUser);
+  useEffect( ()=>{
+    checkAuth()
+  },[checkAuth] )
+
+  if(isCheckingAuth && !authUser){
+      return(
+        <div className="flex items-center justify-center h-screen">
+        <LoaderPinwheel  className="size-10 animate-spin opacity-10"/>
+      </div>
+      )
+    }
+    
+    return (
+      <>
       < NavBar />
       <Routes>
-        < Route path="/" element={<HomePage/>}/>
-        < Route path="/signup" element={<SignUpPage/>}/>
-        < Route path="/login" element={<LogInPage/>}/>
-        < Route path="/setting" element={<SettingPage/>}/>
-        < Route path="/profile" element={<ProfilePage/>}/>
+        < Route path="/" element={authUser ? <HomePage/> : <Navigate to="/login"/>}/>
+        < Route path="/signup" element={!authUser ? <SignUpPage/> : <Navigate to="/" />}/>
+        < Route path="/login" element={!authUser ? <LogInPage/> : <Navigate to="/" />}/>
+        < Route path="/settings" element={<SettingPage/>}/>
+        < Route path="/profile" element={authUser ? <ProfilePage/> : <Navigate to="/login"/>}/>
+        < Route path="*" element={<NotFoundPage/>}/>
       </Routes>
     </>
   )
