@@ -9,6 +9,7 @@ import { Routes, Route, Navigate } from "react-router-dom"
 import { useAuthStore } from "./store/useAuthStore"
 import {LoaderPinwheel} from "lucide-react";
 import { useEffect } from "react"
+import {Toaster} from "react-hot-toast"
 // import {axiosInstanct} from "../src/lib/axios.js"
 
 const App = () => {
@@ -39,6 +40,8 @@ const App = () => {
         < Route path="/profile" element={authUser ? <ProfilePage/> : <Navigate to="/login"/>}/>
         < Route path="*" element={<NotFoundPage/>}/>
       </Routes>
+
+      <Toaster />
     </>
   )
 }
