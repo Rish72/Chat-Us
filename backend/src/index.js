@@ -13,8 +13,9 @@ app.use(cookieParser());        // cookie parser
 app.use(cors({
     origin: "http://localhost:5173",  
     credentials: true,  
-    methods: ["GET✅ Allow cookies/authentication header", "POST", "PUT", "DELETE"],  
+    methods: ["GET", "POST", "PUT", "DELETE"],  //  Correctly formatted HTTP methods
 }));
+
 app.use(express.json());        // body parser
 
 app.use("/api/auth", authRouter);
