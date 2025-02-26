@@ -10,11 +10,12 @@ import { useAuthStore } from "./store/useAuthStore"
 import {LoaderPinwheel} from "lucide-react";
 import { useEffect } from "react"
 import {Toaster} from "react-hot-toast"
-// import {axiosInstanct} from "../src/lib/axios.js"
+import { useThemesStore } from "./store/useThemesStore"
 
 const App = () => {
 
   const {authUser , checkAuth, isCheckingAuth} = useAuthStore();
+  const {theme} = useThemesStore();
   
   console.log("auth user in app comp ",authUser);
   useEffect( ()=>{
@@ -30,7 +31,7 @@ const App = () => {
     }
     
     return (
-      <>
+      <div data-theme={theme}>
       < NavBar />
       <Routes>
         < Route path="/" element={authUser ? <HomePage/> : <Navigate to="/login"/>}/>
@@ -42,7 +43,7 @@ const App = () => {
       </Routes>
 
       <Toaster />
-    </>
+    </div>
   )
 }
 
