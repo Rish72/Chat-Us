@@ -17,7 +17,7 @@ const App = () => {
   const {authUser , checkAuth, isCheckingAuth} = useAuthStore();
   const {theme} = useThemesStore();
   
-  console.log("auth user in app comp ",authUser);
+  // console.log("auth user in app comp ",authUser);
   useEffect( ()=>{
     checkAuth()
   },[checkAuth] )

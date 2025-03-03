@@ -30,7 +30,6 @@ export const signup = async (req, res) => {
         if(newUser){
             // generate JWT 
             generateJWToken(newUser._id, res)
-            console.log("USER CREATED ", newUser);
             await newUser.save()
 
             return res.status(201).json({
@@ -103,7 +102,6 @@ export const updateProfile = async (req, res) => {
     }
 }
 export const checkAuth = (req, res) => {
-    console.log("REQUEST USER in auth controller : "+req.user);
     try {
         res.status(200).json(req.user)
     } catch (e) {
