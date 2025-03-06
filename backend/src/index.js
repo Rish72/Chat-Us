@@ -19,7 +19,7 @@ app.use(cors({
 app.use(express.json());        // body parser
 
 app.use("/api/auth", authRouter);
-app.use("/api/message", msgRouter);
+app.use("/api/messages", msgRouter);
 
 const PORT = process.env.PORT;
 app.listen(4000,() =>{

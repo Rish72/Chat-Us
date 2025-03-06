@@ -13,7 +13,7 @@ export const useChatsStore = create((set, get) => ({
         
         set({isUserLoading : true})
         try {
-            const res = await axiosInstance.get("/message/users");
+            const res = await axiosInstance.get("/messages/users");
             
             set({ users : res.data})
             
@@ -31,7 +31,7 @@ export const useChatsStore = create((set, get) => ({
         set( {isMessageLoading : true} )
         try {
             const res = await axiosInstance(`/messages/${userId}`)
-            set({message : res.data})
+            set({messages : res.data})
         } catch (error) {
             toast.error(error.response.data.message)
         }finally{
